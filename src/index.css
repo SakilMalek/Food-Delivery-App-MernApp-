@@ -17,3 +17,12 @@ code {
   max-height:500px;
 }
 
+.navbar-collapse {
+  transition: height 0.3s ease; /* Smooth transition for height */
+  overflow: hidden; /* Prevent content overflow during transition */
+  height: 0; /* Initial collapsed state */
+}
+
+.navbar-collapse.show {
+  /* height: auto; Expanded state */
+}

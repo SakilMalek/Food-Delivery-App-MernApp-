@@ -63,7 +63,7 @@ let data = useCart();
              :
              <div> <div onClick={()=>{setCartView(true)}}className="btn bg-white text-success mx-2">
              My Cart
-             <Badge pill bg="danger">{data.length}</Badge>
+             <Badge pill bg="danger" style={{top:"-1px" , left:"5px" , position:"relative",padding: "0.4em 0.6em"}}>{data.length}</Badge>
          </div>
          {cartview ? <Modal onClose={() => setCartView(false)}><Cart></Cart></Modal> : ""}
          <button className="btn bg-white text-danger mx-2" onClick={handleLogout}>
