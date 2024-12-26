@@ -2,61 +2,46 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatchCart, useCart } from "./ContextReducer";
 
 export default function Card(props) {
-  let data = useCart();
+  const data = useCart();
+  const dispatch = useDispatchCart();
 
   const [qty, setqty] = useState(1);
   const [size, setsize] = useState("");
   const priceRef = useRef();
-  let options = props.options;
-  let priceOptions = Object.keys(options);
-  const dispatch = useDispatchCart();
+
+  const options = props.options;
+  const priceOptions = Object.keys(options);
+
   const handleAddtoCart = async () => {
-    let food = [];
-    for (const item of data) {
-      if (item.id === props.foodItem._id) {
-        food = item;
-        break;
-      }
-    }
-    if (food !== null) {
-      if (food.size === size) {
-        await dispatch({
-          type: "UPDATE",
-          id: props.foodItem._id,
-          price: finalPrice,
-          qty: qty,
-        })
-         return
-      }
-    else if (food.size !== size) {
-      await dispatch(
-        {
+    let food = data.find(item => item.id === props.foodItem._id && item.size === size);
+
+    if (food) {
+      // Update the quantity if the same size exists
+      await dispatch({
+        type: "UPDATE",
+        id: props.foodItem._id,
+        price: finalPrice,
+        qty: qty,
+      });
+    } else {
+      // Add new item with the selected size
+      await dispatch({
         type: "ADD",
-        id: props.foodItem_id,
+        id: props.foodItem._id,
         name: props.foodItem.name,
         price: finalPrice,
         qty: qty,
         size: size,
-      })
-      return;
-    } 
-    return
+      });
     }
-    await dispatch({
-      type: "ADD",
-      id: props.foodItem_id,
-      name: props.foodItem.name,
-      price: finalPrice,
-      qty: qty,
-      size: size,
-    });
   };
-  let finalPrice = qty * parseInt(options[size]);
+
+  // Calculate the final price
+  const finalPrice = size ? qty * parseFloat(options[size] || 0) : 0;
 
   useEffect(() => {
-    setsize(priceRef.current.value);
-  }, []);
-
+    setsize(priceRef.current?.value || priceOptions[0]);
+  }, [priceOptions]);
 
   return (
     <div>
@@ -78,12 +63,10 @@ export default function Card(props) {
             <div className="container w-100">
               <div className="d-flex justify-content-between mb-3">
                 <select
-                  onChange={(e) => {
-                    setqty(e.target.value);
-                  }}
+                  onChange={(e) => setqty(e.target.value)}
                   className="form-select w-50 me-2"
                 >
-                  {Array.from(Array(6), (e, i) => (
+                  {Array.from({ length: 6 }, (_, i) => (
                     <option key={i + 1} value={i + 1}>
                       {i + 1}
                     </option>
@@ -92,11 +75,9 @@ export default function Card(props) {
                 <select
                   className="form-select w-50"
                   ref={priceRef}
-                  onChange={(e) => {
-                    setsize(e.target.value);
-                  }}
+                  onChange={(e) => setsize(e.target.value)}
                 >
-                  {priceOptions.map((data) => (
+                  {priceOptions.map(data => (
                     <option key={data} value={data}>
                       {data}
                     </option>
