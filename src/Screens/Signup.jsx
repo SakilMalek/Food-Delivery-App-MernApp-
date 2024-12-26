@@ -8,38 +8,35 @@ export default function Signup() {
         password: "",
         geolocation: "" // Ensure consistency
     });
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
-    
+        e.preventDefault(); // Corrected typo
+
         try {
             const response = await fetch("http://localhost:5000/api/createuser", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     name: credentials.name,
                     email: credentials.email,
                     password: credentials.password,
-                    location: credentials.geolocation,
-                }),
+                    location: credentials.geolocation // Consistent key name
+                })
             });
-    
+
             const json = await response.json();
-            console.log(json); // Log the response to see the details
-    
+            console.log(json);
+
             if (!json.success) {
-                alert(json.message || "Enter valid credentials");
-            } else {
-                // Handle successful signup
-                alert("User created successfully");
+                alert("Enter valid credentials");
             }
         } catch (error) {
             console.error("Error during signup:", error);
             alert("Something went wrong, please try again.");
         }
     };
-
 
     const onChange = (event) => {
         setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -109,4 +106,3 @@ export default function Signup() {
         </>
     );
 }
- 

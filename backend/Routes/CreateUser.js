@@ -6,38 +6,33 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const jwtSecret = "MynameisMalekSakilMohammadArifMohammadAndthisismyfirrstmernstackproject"
 router.post(
-"/createuser",
+  "/createuser",
   [
     body("email").isEmail(),
     body("password", "Password must be at least 5 characters long").isLength({ min: 5 }),
     body("name").isLength({ max: 20 }),
   ],
+
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ success: false, message: "Invalid input", errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     try {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-      const newUser = new User({
+      await User.create({
         name: req.body.name,
-        password: hashedPassword,
+        password: hashedPassword, // Save hashed password
         email: req.body.email,
         location: req.body.location,
       });
-
-      await newUser.save();
-      return res.json({ success: true });
+      res.json({ success: true });
     } catch (error) {
-      console.log("Error creating user:", error.message);
-      if (error.code === 11000) {
-        // Duplicate email error (MongoDB)
-        return res.status(400).json({ success: false, message: "Email already in use" });
-      }
-      return res.status(500).json({ success: false, message: "Server error" });
+      console.log(error);
+      res.json({ success: false });
     }
   }
 );
