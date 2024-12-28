@@ -39,7 +39,7 @@
 
 
 
-//Card Components
+/* Card Components */
 .card {
   margin-bottom: 20px; /* Add spacing between cards */
 }
@@ -96,20 +96,6 @@
   margin-bottom: 15px; /* Adjust spacing */
 }
 
-/* .card-text:hover::after {
-  content: attr(data-description);
-  position: absolute;
-  left: 0;
-  top: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  white-space: normal;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-} */
 
 @media (max-width: 768px) {
   .card {
@@ -118,9 +104,8 @@
   }
 }
 
-//Login page 
+/* Login page  */
 body {
-  background: linear-gradient(to bottom right, #198754, #6c757d);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -142,7 +127,7 @@ body {
   }
 }
 
-//Home
+/* Home */
 /* Carousel Section */
 .carousel-image {
   filter: brightness(30%) !important;

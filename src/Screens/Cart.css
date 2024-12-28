@@ -12,10 +12,7 @@
   color: #343a40; /* Darker color for better visibility */
 }
 
-/* Removed the hover effect for cart item row */
-.cart-item-row {
-  /* No hover effect here */
-}
+
 
 .cart-table img.cart-item-img {
   width: 50px;

@@ -19,7 +19,7 @@ export default function Navbar(props) {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
         <div className="container-fluid">
-          <Link className="navbar-brand fst-italic fs-3" to="#">
+          <Link className="navbar-brand fst-italic fs-3" to="/">
             Foodie
           </Link>
           <button
