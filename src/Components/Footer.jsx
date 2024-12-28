@@ -1,17 +1,50 @@
-import React from 'react'
+import React from "react";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import './Footer.css'; // Import CSS for custom styling
 
 export default function Footer() {
   return (
-    <div>
-      <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <div className="col-md-4 d-flex align-items-center">
-   
-      <span className="mb-3 mb-md-0 text-muted">© 2024 Foodie, Inc</span>
-    </div>
+    <footer className="footer-container">
+      <div className="footer-content">
+        <div className="footer-left">
+          <span>© 2024 Foodie, Inc. All rights reserved.</span>
+        </div>
 
-    <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-    </ul>
-  </footer>
-    </div>
-  )
+        <div className="footer-right">
+          <ul className="social-icons">
+            <li>
+              <a
+                href="https://www.facebook.com/shakilmalek111"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+              >
+                <FaFacebook size={24} />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/shakilmalek111/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+              >
+                <FaInstagram size={24} />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/malekshakil111/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+              >
+                <FaLinkedin size={24} />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  );
 }

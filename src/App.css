@@ -37,3 +37,172 @@
   }
 }
 
+
+
+//Card Components
+.card {
+  margin-bottom: 20px; /* Add spacing between cards */
+}
+
+.row {
+  row-gap: 20px; /* Add vertical spacing between rows */
+}
+
+.card-body {
+  padding-bottom: 15px; /* Adjust padding inside the card for better spacing */
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  
+}
+
+.card {
+  width: 18rem;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-text {
+  height: 80px; /* Increase height to fit more text */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* Allow multi-line text */
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 15px; /* Adjust spacing */
+}
+
+/* .card-text:hover::after {
+  content: attr(data-description);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: normal;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+//Login page 
+body {
+  background: linear-gradient(to bottom right, #198754, #6c757d);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+//Home
+/* Carousel Section */
+.carousel-image {
+  filter: brightness(30%) !important;
+  transition: filter 0.3s ease-in-out;
+}
+
+
+/* Search Bar Styling */
+.search-bar {
+  max-width: 500px;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Food Category Styling */
+.food-category {
+  padding: 20px 0;
+}
+
+.food-category-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color:rgb(60, 81, 103);
+  text-transform: capitalize;
+}
+
+.food-category hr {
+  border-color: #3498db;
+}
+
+/* Food Item Layout */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  border-bottom: 2px solid #3498db;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .carousel-caption {
+    top: 30%;
+  }
+  .search-bar {
+    width: 90%;
+  }
+}

@@ -7,6 +7,7 @@ import Login from "./Screens/Login";
 import Signup from "./Screens/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./Components/ContextReducer.jsx";
+import MyOrder from "./Screens/MyOrder.js";
 function App() {
   return (
     <CartProvider> <Router>
@@ -15,7 +16,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/Login" element={<Login />} />
           <Route exact path="/createuser" element={<Signup />} />
-
+          <Route exact path="/myOrder" element={<MyOrder />} />
         </Routes>
       </div>
     </Router></CartProvider>

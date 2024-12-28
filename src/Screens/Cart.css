@@ -1,42 +1,112 @@
 .cart-container {
-    padding: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-table th, .cart-table td {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  color: #343a40; /* Darker color for better visibility */
+}
+
+/* Removed the hover effect for cart item row */
+.cart-item-row {
+  /* No hover effect here */
+}
+
+.cart-table img.cart-item-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.total-price {
+  text-align: right;
+  margin-right: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #343a40; /* Darker color for the total price */
+}
+
+.empty-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  color: #343a40; /* Darker color for empty cart text */
+}
+
+.checkout-button {
+  text-align: right;
+  margin-right: 20px;
+}
+
+/* Customize checkout button */
+.btn-success {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
+  background-color: #28a745;  /* Green color */
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+button.btn.bg-danger{
+  background-color:rgb(70, 220, 53);  
+
+}
+.btn-success:hover {
+  background-color: #218838;  /* Darker green */
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.5);  /* Shadow effect on hover */
+}
+
+/* Customize delete (cross) button */
+.btn-outline-danger {
+  border-radius: 50%;
+  padding: 10px 15px;
+  background-color: #ff4d4d;  
+  border: 2px solid #ff4d4d;  
+  color: white;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for delete button */
+.btn-outline-danger:hover {
+  background-color: #ff1a1a;  /* Darker red */
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(255, 26, 26, 0.5);  /* Shadow effect on hover */
+}
+
+.cart-table th {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.cart-table td {
+  font-size: 1.1rem;
+}
+
+.cart-table .btn-outline-danger {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 15px;
   }
-  
+
   .cart-table th, .cart-table td {
-    text-align: center;
-    vertical-align: middle;
+    font-size: 0.9rem;
   }
-  
-  .cart-table img.trash-icon {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .total-price {
-    text-align: right;
-    margin-right: 20px;
-  }
-  
-  .empty-cart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-  }
-  
-  .checkout-button {
-    text-align: right;
-    margin-right: 20px;
-  }
-  
+
   .btn-success {
     padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
   }
-  
-  .btn-outline-danger {
-    border-radius: 50%;
-    padding: 5px;
-  }
-  
+}

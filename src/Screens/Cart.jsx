@@ -1,11 +1,14 @@
 import React from "react";
-import trash from "../trash.svg";
+import DeleteIcon from '@mui/icons-material/Delete'; // Correct import for Material-UI
 import { useCart, useDispatchCart } from "../Components/ContextReducer";
 import "./Cart.css"; // Import custom CSS for cart component
 
 export default function Cart() {
   let data = useCart();
   let dispatch = useDispatchCart();
+
+  // Calculate total price
+  let totalPrice = data.reduce((total, food) => total + Number(food.price), 0);
 
   if (data.length === 0) {
     return (
@@ -15,38 +18,60 @@ export default function Cart() {
     );
   }
 
-  // Calculate total price
-  let totalPrice = data.reduce((total, food) => total + Number(food.price), 0);
+  const handleCheckOut = async () => {
+    let userEmail = localStorage.getItem("userEmail");
+    try {
+      let response = await fetch("http://localhost:5000/api/orderData", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          order_data: data,
+          email: userEmail,
+          order_date: new Date().toDateString(),
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Order successfully placed!");
+        dispatch({ type: "DROP" }); // Clear the cart
+      } else {
+        console.error("Order failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error while placing order:", error);
+    }
+  };
 
   return (
     <div className="cart-container">
       <div className="container m-auto mt-5 table-responsive">
-        <table className="table table-hover cart-table">
+        <table className="table  cart-table">
           <thead className="text-success fs-4">
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Sr No.</th>
               <th scope="col">Name</th>
               <th scope="col">Quantity</th>
               <th scope="col">Option</th>
               <th scope="col">Amount</th>
-              <th scope="col">Action</th>
+            
             </tr>
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr key={index}>
+              <tr key={index} className="cart-item-row">
                 <th scope="row">{index + 1}</th>
                 <td>{food.name}</td>
                 <td>{food.qty}</td>
                 <td>{food.size}</td>
-                <td>{food.price}</td> {/* Ensure price is displayed */}
+                <td>{food.price}</td>
+                
                 <td>
                   <button
                     type="button"
                     className="btn btn-outline-danger btn-sm"
                     onClick={() => dispatch({ type: "REMOVE", index })}
                   >
-                    <img src={trash} alt="delete" className="trash-icon" />
+                    <DeleteIcon />
                   </button>
                 </td>
               </tr>
@@ -61,7 +86,9 @@ export default function Cart() {
         </div>
       </div>
       <div className="checkout-button">
-        <button className="btn btn-success mt-5">Check Out</button>
+        <button onClick={handleCheckOut} className="btn btn-success mt-5">
+          Check Out
+        </button>
       </div>
     </div>
   );

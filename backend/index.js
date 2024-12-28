@@ -4,12 +4,13 @@ const cors = require('cors');
 const mongoDB = require('./db');
 const port = 5000;
 
-// Use CORS middleware
+
+// Configure CORS
 app.use(cors({
-    origin: "http://localhost:3001",
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept"
+  origin: 'http://localhost:3000', // Frontend URL
+  credentials: true,              // Allow cookies and credentials
 }));
+
 
 // Middleware to parse incoming JSON
 app.use(express.json());
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 // Register routes with more explicit paths
 app.use('/api/', require("./Routes/CreateUser"));
 app.use('/api/', require("./Routes/DisplayData"));
+app.use('/api/', require("./Routes/OrderData"));
 
 // Call the function to connect to MongoDB
 mongoDB().then(() => {
