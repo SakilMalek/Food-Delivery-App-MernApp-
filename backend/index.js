@@ -17,9 +17,9 @@ const _dirname = path.resolve();
 app.use(express.json());
 
 // Basic route
-app.get('/', (req, res) => {
-    res.send("Hello World!!");
-});
+// app.get('/', (req, res) => {
+//     res.send("Hello World!!");
+// });
 
 // Register routes with more explicit paths
 app.use('/api/', require("./Routes/CreateUser"));
