@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-import './Footer.css'; 
+import './Footer.css';
 
 export default function Footer() {
   return (
@@ -18,6 +18,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon"
+                aria-label="Visit our Facebook"
               >
                 <FaFacebook size={24} />
               </a>
@@ -28,6 +29,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon"
+                aria-label="Visit our Instagram"
               >
                 <FaInstagram size={24} />
               </a>
@@ -38,6 +40,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon"
+                aria-label="Visit our LinkedIn"
               >
                 <FaLinkedin size={24} />
               </a>
