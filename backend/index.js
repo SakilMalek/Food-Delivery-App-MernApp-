@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -11,7 +12,7 @@ app.use(cors({
   credentials: true,              // Allow cookies and credentials
 }));
 
-
+const _dirname = path.resolve();
 // Middleware to parse incoming JSON
 app.use(express.json());
 
@@ -32,4 +33,9 @@ mongoDB().then(() => {
     });
 }).catch(err => {
     console.error("Failed to connect to MongoDB:", err);
+});
+app.use(express.static(path.join(_dirname, '/frontend/build')));
+
+app.get('*', (_, res) => {
+  res.sendFile(path.resolve(_dirname, 'frontend', 'build', 'index.html'));
 });

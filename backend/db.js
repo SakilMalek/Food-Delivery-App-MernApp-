@@ -4,7 +4,6 @@ const mongoURI = 'mongodb+srv://Foodie:Malekalam@cluster0.r0oqo.mongodb.net/Food
 
 const mongoDB = async () => {
     await mongoose.connect(mongoURI);
-    console.log("Connected Successfully to MongoDB");
     
     const fetched_data = await mongoose.connection.db.collection("food_item");
     try {
@@ -13,7 +12,6 @@ const mongoDB = async () => {
         const foodCategory = await mongoose.connection.db.collection("Food_Category");
         const category = await foodCategory.find({}).toArray();
         global.Food_Category = category.length>0 ? category : [];
-        //console.log("Fetched data:", global.food_item);
     } catch (err) {
         console.error("Failed to fetch data from MongoDB:", err);
         process.exit(1);  // Exit the process if the connection fails
